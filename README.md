@@ -1,7 +1,48 @@
 # ThymeLib：一个百度Algodoo吧官方Thyme脚本库集合，免费使用！
 ### 只可转载不得买卖，转载记得写明出处！如果你是以收费方式取得的，请立即向出售方申请退款！！
 
-SimplePID库使用说明:
+### ExCore库使用说明:
+
+#### 1.扩展型for：extendFor(exeBlolowerk,upper,lower)
+
+exeBlolowerk：执行块,
+upper：循环次数上限,
+lower：循环次数下限
+
+#### 2.窄xFor循环：sFor(lower, upper, code) 
+
+说明：取不到上限且不会多执行一次的循环
+
+code：执行块,
+upper：循环次数上限,
+lower：循环次数下限
+
+#### 3.二分循环：xFor(lower, upper, code) 
+
+说明：一定能执行一次且能取到上限
+
+code：执行块,
+upper：循环次数上限,
+lower：循环次数下限
+
+#### 4.宽xFor循环：wFor(lower, upper, code) 
+
+说明：取得到上限且不会多执行一次
+
+code：执行块,
+upper：循环次数上限,
+lower：循环次数下限
+
+#### 5.可中断xFor循环：bFor(lower, upper, code) 
+
+说明：取不到上限且不会多执行一次,允许带有条件退出,条件语句在写的时候要写到code块内的结尾,若需要使用索引中断则索引应该+1后进行比较,不建议使用索引中断
+
+code：执行块,
+upper：循环次数上限,
+lower：循环次数下限
+
+
+### SimplePID库使用说明:
 
 #### 1.PI控制：PIcontrol(targetValue,targetObject)
 
