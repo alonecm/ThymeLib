@@ -1,0 +1,101 @@
+/*
+引用的库文件：ExCore.thm | ExtendArray.thm
+！！使用前请确保安装到Algodoo中！！
+*/
+
+//字符串对象
+StringObject=(str)=>{
+	_:=alloc;
+	_.length:=null;//字符串长度
+	_.split:=null;//按指定字符拆分字符串
+	_.getList:=null;//获取字符串对应的列表
+	_.getChar:=null;//获取指定位置的字符
+	_.setValue:=null;//设定新字符串
+	_.getContent:=null;//获取内容
+	_.append:=null;//追加内容
+	_.subString:=null;//取子字符串
+	_->{
+		s:=str;
+		lastS:=null;
+		list:=null; //新列表
+		//字符串长度
+		length={string.length(s)};
+		//按指定字符拆分字符串
+		split=(splitStr)=>{ExString.split(s,splitStr)};
+		//获取字符串对应的列表
+		getList={
+			lastS!=s?{
+				list=ExString.str2list(s);
+				lastS=s;
+			}:{};
+			list
+		};
+		//获取指定位置的字符
+		getChar=(index)=>{
+			lastS!=s?{
+				list=ExString.str2list(s);
+				lastS=s;
+			}:{};
+			(list.getElement(index)).getContent;
+		};
+		//设定新字符串
+		setValue=(new_str)=>{s=new_str};
+		//获取内容
+		getContent={s};
+		//追加内容
+		append=(new_str)=>{s=s+new_str};
+		//取子字符串
+		subString=(start,length)=>{ExString.subString(s,start,length)};
+	};
+	_;
+};
+
+ExString={
+	_:=alloc;
+	_.split:=null;//按字母分离新列表
+	_.list2str:=null;//原始列表转新字符串
+	_.str2list:=null;//原始字符串转新列表
+	_.subString:=null;//取原始子字符串到新字符串
+	_.indexOf:=null;//获取指定字符在字符串中的第一个位置
+	_->{
+		//按字母分离原始字符串到新列表
+		split=(str,splitStr)=>{
+			arr:=string.split(str,splitStr);
+			narr:=WritableArrayObject(ExArray.getLength(arr));
+			ExCore.sFor(0,narr.length,(i)=>{
+				narr.setElement(i,StringObject(arr(i)))
+			});
+			narr
+		};
+		//原始列表转新字符串
+		list2str=(arr)=>{
+			StringObject(string.list2str(arr));
+		};
+		//原始字符串转新列表
+		str2list=(str)=>{
+			arr:=string.str2list(str);
+			narr:=WritableArrayObject(ExArray.getLength(arr));
+			ExCore.sFor(0,narr.length,(i)=>{
+				narr.setElement(i,StringObject(arr(i)));
+			});
+			narr
+		};
+		//取原始子字符串到新字符串
+		subString=(str,start,length)=>{
+			list:=string.str2list(str);
+			s:="";
+			length>0?{
+				start+length<string.length(str)?{
+					ExCore.sFor(start,start+length,(i)=>{s=s+list(i)})
+				}:{
+					ExCore.sFor(start,string.length(str),(i)=>{s=s+list(i)})
+				};
+			}:{};
+			StringObject(s);
+		};
+		//获取指定字符在字符串中的第一个位置
+		indexOf=(str,char)=>{ExArray.indexOf(string.str2list(str),char)};
+	};
+	_;
+};
+ExString=ExString;

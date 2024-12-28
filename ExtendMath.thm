@@ -1,0 +1,139 @@
+/*
+引用的库文件：ExtendArray.thm | ExtendString.thm
+！！使用前请确保安装到Algodoo中！！
+*/
+
+ExMath={
+	_:=alloc;
+	_.not:=null;
+	_.xor:=null;
+	_.nand:=null;
+	_.nor:=null;
+	_.xnor:=null;
+	_.abs:=null;
+	_.log:=null;
+	_.lg:=null;
+	_.ln:=null;
+	_.sign:=null;
+	_.floor:=null;
+	_.ceil:=null;
+	_.round:=null;
+	_.derive:=null;
+	_.solveRoot:=null;
+	_.deg2rad:=null;
+	_.rad2deg:=null;
+	_.endPoint:=null;
+	_.integralSimple:=null;
+	_->{
+		xor=(a,b)=>{
+			(a||b)&&(!(a&&b));
+		};
+		xnor=(a,b)=>{
+			!((a||b)&&(!(a&&b)));
+		};
+		not=(a)=>{
+			!a;
+		};
+		nand=(a,b)=>{
+			!(a&&b);
+		};
+		nor=(a,b)=>{
+			!(a||b);
+		};
+		//取绝对值
+		abs=(n)=>{
+			n>0?{n}:{n<0?{-n}:{0}};
+		};
+		//对数运算
+		log=(a,N)=>{
+			(N^0.00001-1)/(a^0.00001-1)
+		};
+		//以10为底的对数运算
+		lg=(N)=>{
+			(N^0.00001-1)/(10^0.00001-1)
+		};
+		//以e为底的对数运算
+		ln=(N)=>{
+			(N^0.00001-1)/(2.7182818284590452^0.00001-1)
+		};
+		//符号函数
+		sign=(N)=>{
+			N<0?{-1}:{N==0?0:1}
+		};
+		//向下取整
+		floor=(N)=>{
+			N!=math.toInt(N)?{N>=0?{math.toInt(N)}:{math.toInt(N)-1}}:{N};
+		};
+		//向上取整
+		ceil=(N)=>{
+			N!=math.toInt(N)?{N>=0?{math.toInt(N)+1}:{math.toInt(N)}}:{N};
+		};
+		//四舍五入(数字变成科学计数法将会失效)
+		round=(number,pointPos)=>{
+			pointPos>0&&(number>0||number<0)?{//保留小数点
+				//转为文字并拆分为小数和整数（字符串）
+				group:=ExString.split(math.toString(abs(number)),".");
+				//检查拆分个数是否为两个,不是则为整数
+				group.length>1?{
+					//限制小数点位置最长位置
+					pos:=pointPos;
+					pointPos>(group.getElement(1)).length?{pos=(group.getElement(1)).length}:{};
+					//小数部分结尾添加一个零用于取全部（字符串）
+					(group.getElement(1)).append(0);
+					//五入处理
+					combineNum:=(group.getElement(0)).getcontent+((group.getElement(1)).subString(0,pos-1)).getcontent;
+					math.toInt((group.getElement(1)).getChar(pos))>=5?{
+						combineNum=combineNum+(math.toInt((group.getElement(1)).getChar(pos-1))+1);
+					}:{combineNum=combineNum+(math.toInt((group.getElement(1)).getChar(pos-1)))};
+					//插入一个“.”
+					numberlist:=string.str2list(combineNum);
+					numberlist=ExArray.insertElement(numberlist,(group.getElement(0)).length,".");
+					//处理符号问题
+					num:=string.list2str(numberlist);
+					number<0?{num="-"+num}:{};
+					math.toFloat(num);
+				}:{number};
+			}:{
+				abs(number)-abs(math.toInt(number))>=0.5?{//不保留小数点
+					number>=0?{math.toInt(number)+1}:{math.toInt(number)-1}
+				}:{math.toInt(number)}
+			};
+		};
+		//函数梯度(求导)，参数为((x)=>{x的原函数},要带入导函数中的值)
+		derive=(function, x)=>{ 
+			(function(x+0.001)-function(x))/0.001 
+		};
+		//求根(牛顿迭代法)，参数为((x)=>{x的方程},初始值)
+		solveRoot=(function, initial_value)=>{	
+			z := math.tofloat(initial_value); 
+			for(45,(i)=>{ 
+				z = z - function(z) / derive(function, z)
+			});
+		};
+		//角度转弧度
+		deg2rad=(angle)=>{
+			angle * Math.Pi / 180;
+		};
+		//弧度转角度
+		rad2deg=(rad)=>{
+			rad / math.pi * 180.0;
+		};
+		//获取线段终点坐标
+		endPoint=(point, length, angle)=>{
+			rad:=deg2rad(angle);
+			point + length * [math.cos(rad),math.sin(rad)];
+		};
+		//积分运算(简单积分)，参数为((x)=>{x的被积函数},积分下限，积分上限)
+		integralSimple=(function, lowerLimt, upperLimt)=>{
+			m1 := 0; 
+			m2 := 0; 
+			(upperLimt - lowerLimt) / 120.0 * (0.5 * function(lowerLimt) + for(39, (k)=>{
+				m1 = m1 + function(lowerLimt + (k + 1) * (upperLimt - lowerLimt) / 40.0)
+			}) + 2 * for(40, (k)=>{
+				m2 = m2 + function(((lowerLimt + k * (upperLimt - lowerLimt) / 40.0) + (lowerLimt + (k + 1) * (upperLimt - lowerLimt) / 40.0)) / 2.0)
+			}) + 0.5 * function(upperLimt))
+		};
+	};
+	_;
+};
+ExMath=ExMath;

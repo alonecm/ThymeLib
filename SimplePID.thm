@@ -1,0 +1,76 @@
+/*
+引用的库文件：无
+！！使用前请确保安装到Algodoo中！！
+*/
+
+SimplePID={
+	_:=alloc;
+	_.kp:=2;//比例
+	_.ki:=0.5;//积分
+	_.kd:=100;//微分
+	//系数模板
+	_.template:=null;
+	//比例微分控制
+	_.PDcontrol:=null;
+	//比例积分控制
+	_.PIcontrol:=null;
+	//比例微积分控制
+	_.PIDcontrol:=null;
+	_->{
+		//上一个微分值
+		lastDeltaValue:=0;
+		//积分总和
+		ip:=0;
+		//模板
+		template=(mode)=>{
+			mode==0?{
+				kp=10;
+				ki=0.8;
+				kd=100;
+			}:{};
+			mode==1?{
+				kp=10;
+				ki=0.5;
+				kd=10;
+			}:{};
+			mode==2?{
+				kp=100;
+				ki=0.5;
+				kd=1000;
+			}:{};
+		};
+		//比例微积分(目标值，数值来源，[返回控制对象的值])
+		PIDcontrol=(targetValue,targetObject)=>{
+			Pcontrol(targetValue,targetObject)+Icontrol(targetValue,targetObject)+Dcontrol(targetValue,targetObject);
+		};
+		//比例积分
+		PIcontrol=(targetValue,targetObject)=>{
+			Pcontrol(targetValue,targetObject)+Icontrol(targetValue,targetObject);
+		};
+		//比例微分
+		PDcontrol=(targetValue,targetObject)=>{
+			Pcontrol(targetValue,targetObject)+Dcontrol(targetValue,targetObject);
+		};
+		//误差值
+		deltaValue=(targetValue,targetObject)=>{
+			targetValue-targetObject;
+		};
+		//比例控制
+		Pcontrol=(targetValue,targetObject)=>{
+			kp*deltaValue(targetValue,targetObject);
+		};
+		//积分控制
+		Icontrol=(targetValue,targetObject)=>{
+			ip=ki*(ip+deltaValue(targetValue,targetObject));
+		};
+		//微分控制
+		Dcontrol=(targetValue,targetObject)=>{
+			ddv=deltaValue(targetValue,targetObject);
+			p=kd*(ddv-lastDeltaValue);
+			lastDeltaValue=ddv;
+			p;
+		};
+	};
+	_;
+};
+

@@ -1,0 +1,285 @@
+/*
+引用的库文件：无
+！！使用前请确保安装到Algodoo中！！
+*/
+
+ExCore={
+	_:=alloc;
+	_.extendFor:=null;
+	_.sFor:=null;
+	_.wFor:=null;
+	_.xFor:=null;
+	_.bFor:=null;
+	_->{
+		//bFor(取不到上限且不会多执行一次,允许带有条件退出,条件语句在写的时候要写到code代码块的结尾,若需要使用索引中断则索引应该+1后进行比较,不建议使用索引中断)
+		bFor=(lower, upper, code)=>{
+			upper>lower?{
+				mid:=(lower+upper)/2;
+				bFor(lower,mid,code)?{
+					bFor(mid+1,upper,code)
+				}:{false};
+			}:{code(lower)}
+		};
+		//wFor（xFor的变种，取得到上限且不会多执行一次）
+		wFor=(lower, upper, code)=>{
+			lower>=0?{
+				upper>lower?{xFor(lower,upper,code)}:{}
+			}:{print("下限不能为负！")};
+		};
+		//sFor（xFor的变种，取不到上限且不会多执行一次）
+		sFor=(lower, upper, code)=>{
+			lower>=0?{
+				upper>lower?{xFor(lower,upper-1,code);}:{}
+			}:{print("下限不能为负！")};
+		};
+		//xFor(一定能执行一次且能取到上限)
+		xFor=(lower, upper, code)=>{
+			upper > lower ? {
+				mid := (lower + upper) / 2;
+				xFor(lower, mid, code);
+				xFor(mid + 1, upper, code)
+			} : {code(lower)};
+		};
+		//扩展型For
+		extendFor=(exeBlolowerk,upper,lower)=>{
+			lower < upper ? {exeBlolowerk(lower)} : {};
+			(lower + 1) < upper ? {exeBlolowerk(lower + 1)} : {};
+			(lower + 2) < upper ? {exeBlolowerk(lower + 2)} : {};
+			(lower + 3) < upper ? {exeBlolowerk(lower + 3)} : {};
+			(lower + 4) < upper ? {exeBlolowerk(lower + 4)} : {};
+			(lower + 5) < upper ? {exeBlolowerk(lower + 5)} : {};
+			(lower + 6) < upper ? {exeBlolowerk(lower + 6)} : {};
+			(lower + 7) < upper ? {exeBlolowerk(lower + 7)} : {};
+			(lower + 8) < upper ? {exeBlolowerk(lower + 8)} : {};
+			(lower + 9) < upper ? {exeBlolowerk(lower + 9)} : {};
+			(lower + 10) < upper ? {exeBlolowerk(lower + 10)} : {};
+			(lower + 11) < upper ? {exeBlolowerk(lower + 11)} : {};
+			(lower + 12) < upper ? {exeBlolowerk(lower + 12)} : {};
+			(lower + 13) < upper ? {exeBlolowerk(lower + 13)} : {};
+			(lower + 14) < upper ? {exeBlolowerk(lower + 14)} : {};
+			(lower + 15) < upper ? {exeBlolowerk(lower + 15)} : {};
+			(lower + 16) < upper ? {exeBlolowerk(lower + 16)} : {};
+			(lower + 17) < upper ? {exeBlolowerk(lower + 17)} : {};
+			(lower + 18) < upper ? {exeBlolowerk(lower + 18)} : {};
+			(lower + 19) < upper ? {exeBlolowerk(lower + 19)} : {};
+			(lower + 20) < upper ? {exeBlolowerk(lower + 20)} : {};
+			(lower + 21) < upper ? {exeBlolowerk(lower + 21)} : {};
+			(lower + 22) < upper ? {exeBlolowerk(lower + 22)} : {};
+			(lower + 23) < upper ? {exeBlolowerk(lower + 23)} : {};
+			(lower + 24) < upper ? {exeBlolowerk(lower + 24)} : {};
+			(lower + 25) < upper ? {exeBlolowerk(lower + 25)} : {};
+			(lower + 26) < upper ? {exeBlolowerk(lower + 26)} : {};
+			(lower + 27) < upper ? {exeBlolowerk(lower + 27)} : {};
+			(lower + 28) < upper ? {exeBlolowerk(lower + 28)} : {};
+			(lower + 29) < upper ? {exeBlolowerk(lower + 29)} : {};
+			(lower + 30) < upper ? {exeBlolowerk(lower + 30)} : {};
+			(lower + 31) < upper ? {exeBlolowerk(lower + 31)} : {};
+			(lower + 32) < upper ? {exeBlolowerk(lower + 32)} : {};
+			(lower + 33) < upper ? {exeBlolowerk(lower + 33)} : {};
+			(lower + 34) < upper ? {exeBlolowerk(lower + 34)} : {};
+			(lower + 35) < upper ? {exeBlolowerk(lower + 35)} : {};
+			(lower + 36) < upper ? {exeBlolowerk(lower + 36)} : {};
+			(lower + 37) < upper ? {exeBlolowerk(lower + 37)} : {};
+			(lower + 38) < upper ? {exeBlolowerk(lower + 38)} : {};
+			(lower + 39) < upper ? {exeBlolowerk(lower + 39)} : {};
+			(lower + 40) < upper ? {exeBlolowerk(lower + 40)} : {};
+			(lower + 41) < upper ? {exeBlolowerk(lower + 41)} : {};
+			(lower + 42) < upper ? {exeBlolowerk(lower + 42)} : {};
+			(lower + 43) < upper ? {exeBlolowerk(lower + 43)} : {};
+			(lower + 44) < upper ? {exeBlolowerk(lower + 44)} : {};
+			(lower + 45) < upper ? {exeBlolowerk(lower + 45)} : {};
+			(lower + 46) < upper ? {exeBlolowerk(lower + 46)} : {};
+			(lower + 47) < upper ? {exeBlolowerk(lower + 47)} : {};
+			(lower + 48) < upper ? {exeBlolowerk(lower + 48)} : {};
+			(lower + 49) < upper ? {exeBlolowerk(lower + 49)} : {};
+			(lower + 50) < upper ? {exeBlolowerk(lower + 50)} : {};
+			(lower + 51) < upper ? {exeBlolowerk(lower + 51)} : {};
+			(lower + 52) < upper ? {exeBlolowerk(lower + 52)} : {};
+			(lower + 53) < upper ? {exeBlolowerk(lower + 53)} : {};
+			(lower + 54) < upper ? {exeBlolowerk(lower + 54)} : {};
+			(lower + 55) < upper ? {exeBlolowerk(lower + 55)} : {};
+			(lower + 56) < upper ? {exeBlolowerk(lower + 56)} : {};
+			(lower + 57) < upper ? {exeBlolowerk(lower + 57)} : {};
+			(lower + 58) < upper ? {exeBlolowerk(lower + 58)} : {};
+			(lower + 59) < upper ? {exeBlolowerk(lower + 59)} : {};
+			(lower + 60) < upper ? {exeBlolowerk(lower + 60)} : {};
+			(lower + 61) < upper ? {exeBlolowerk(lower + 61)} : {};
+			(lower + 62) < upper ? {exeBlolowerk(lower + 62)} : {};
+			(lower + 63) < upper ? {exeBlolowerk(lower + 63)} : {};
+			(lower + 64) < upper ? {exeBlolowerk(lower + 64)} : {};
+			(lower + 65) < upper ? {exeBlolowerk(lower + 65)} : {};
+			(lower + 66) < upper ? {exeBlolowerk(lower + 66)} : {};
+			(lower + 67) < upper ? {exeBlolowerk(lower + 67)} : {};
+			(lower + 68) < upper ? {exeBlolowerk(lower + 68)} : {};
+			(lower + 69) < upper ? {exeBlolowerk(lower + 69)} : {};
+			(lower + 70) < upper ? {exeBlolowerk(lower + 70)} : {};
+			(lower + 71) < upper ? {exeBlolowerk(lower + 71)} : {};
+			(lower + 72) < upper ? {exeBlolowerk(lower + 72)} : {};
+			(lower + 73) < upper ? {exeBlolowerk(lower + 73)} : {};
+			(lower + 74) < upper ? {exeBlolowerk(lower + 74)} : {};
+			(lower + 75) < upper ? {exeBlolowerk(lower + 75)} : {};
+			(lower + 76) < upper ? {exeBlolowerk(lower + 76)} : {};
+			(lower + 77) < upper ? {exeBlolowerk(lower + 77)} : {};
+			(lower + 78) < upper ? {exeBlolowerk(lower + 78)} : {};
+			(lower + 79) < upper ? {exeBlolowerk(lower + 79)} : {};
+			(lower + 80) < upper ? {exeBlolowerk(lower + 80)} : {};
+			(lower + 81) < upper ? {exeBlolowerk(lower + 81)} : {};
+			(lower + 82) < upper ? {exeBlolowerk(lower + 82)} : {};
+			(lower + 83) < upper ? {exeBlolowerk(lower + 83)} : {};
+			(lower + 84) < upper ? {exeBlolowerk(lower + 84)} : {};
+			(lower + 85) < upper ? {exeBlolowerk(lower + 85)} : {};
+			(lower + 86) < upper ? {exeBlolowerk(lower + 86)} : {};
+			(lower + 87) < upper ? {exeBlolowerk(lower + 87)} : {};
+			(lower + 88) < upper ? {exeBlolowerk(lower + 88)} : {};
+			(lower + 89) < upper ? {exeBlolowerk(lower + 89)} : {};
+			(lower + 90) < upper ? {exeBlolowerk(lower + 90)} : {};
+			(lower + 91) < upper ? {exeBlolowerk(lower + 91)} : {};
+			(lower + 92) < upper ? {exeBlolowerk(lower + 92)} : {};
+			(lower + 93) < upper ? {exeBlolowerk(lower + 93)} : {};
+			(lower + 94) < upper ? {exeBlolowerk(lower + 94)} : {};
+			(lower + 95) < upper ? {exeBlolowerk(lower + 95)} : {};
+			(lower + 96) < upper ? {exeBlolowerk(lower + 96)} : {};
+			(lower + 97) < upper ? {exeBlolowerk(lower + 97)} : {};
+			(lower + 98) < upper ? {exeBlolowerk(lower + 98)} : {};
+			(lower + 99) < upper ? {exeBlolowerk(lower + 99)} : {};
+			(lower + 100) < upper ? {exeBlolowerk(lower + 100)} : {};
+			(lower + 101) < upper ? {exeBlolowerk(lower + 101)} : {};
+			(lower + 102) < upper ? {exeBlolowerk(lower + 102)} : {};
+			(lower + 103) < upper ? {exeBlolowerk(lower + 103)} : {};
+			(lower + 104) < upper ? {exeBlolowerk(lower + 104)} : {};
+			(lower + 105) < upper ? {exeBlolowerk(lower + 105)} : {};
+			(lower + 106) < upper ? {exeBlolowerk(lower + 106)} : {};
+			(lower + 107) < upper ? {exeBlolowerk(lower + 107)} : {};
+			(lower + 108) < upper ? {exeBlolowerk(lower + 108)} : {};
+			(lower + 109) < upper ? {exeBlolowerk(lower + 109)} : {};
+			(lower + 110) < upper ? {exeBlolowerk(lower + 110)} : {};
+			(lower + 111) < upper ? {exeBlolowerk(lower + 111)} : {};
+			(lower + 112) < upper ? {exeBlolowerk(lower + 112)} : {};
+			(lower + 113) < upper ? {exeBlolowerk(lower + 113)} : {};
+			(lower + 114) < upper ? {exeBlolowerk(lower + 114)} : {};
+			(lower + 115) < upper ? {exeBlolowerk(lower + 115)} : {};
+			(lower + 116) < upper ? {exeBlolowerk(lower + 116)} : {};
+			(lower + 117) < upper ? {exeBlolowerk(lower + 117)} : {};
+			(lower + 118) < upper ? {exeBlolowerk(lower + 118)} : {};
+			(lower + 119) < upper ? {exeBlolowerk(lower + 119)} : {};
+			(lower + 120) < upper ? {exeBlolowerk(lower + 120)} : {};
+			(lower + 121) < upper ? {exeBlolowerk(lower + 121)} : {};
+			(lower + 122) < upper ? {exeBlolowerk(lower + 122)} : {};
+			(lower + 123) < upper ? {exeBlolowerk(lower + 123)} : {};
+			(lower + 124) < upper ? {exeBlolowerk(lower + 124)} : {};
+			(lower + 125) < upper ? {exeBlolowerk(lower + 125)} : {};
+			(lower + 126) < upper ? {exeBlolowerk(lower + 126)} : {};
+			(lower + 127) < upper ? {exeBlolowerk(lower + 127)} : {};
+			(lower + 128) < upper ? {exeBlolowerk(lower + 128)} : {};
+			(lower + 129) < upper ? {exeBlolowerk(lower + 129)} : {};
+			(lower + 130) < upper ? {exeBlolowerk(lower + 130)} : {};
+			(lower + 131) < upper ? {exeBlolowerk(lower + 131)} : {};
+			(lower + 132) < upper ? {exeBlolowerk(lower + 132)} : {};
+			(lower + 133) < upper ? {exeBlolowerk(lower + 133)} : {};
+			(lower + 134) < upper ? {exeBlolowerk(lower + 134)} : {};
+			(lower + 135) < upper ? {exeBlolowerk(lower + 135)} : {};
+			(lower + 136) < upper ? {exeBlolowerk(lower + 136)} : {};
+			(lower + 137) < upper ? {exeBlolowerk(lower + 137)} : {};
+			(lower + 138) < upper ? {exeBlolowerk(lower + 138)} : {};
+			(lower + 139) < upper ? {exeBlolowerk(lower + 139)} : {};
+			(lower + 140) < upper ? {exeBlolowerk(lower + 140)} : {};
+			(lower + 141) < upper ? {exeBlolowerk(lower + 141)} : {};
+			(lower + 142) < upper ? {exeBlolowerk(lower + 142)} : {};
+			(lower + 143) < upper ? {exeBlolowerk(lower + 143)} : {};
+			(lower + 144) < upper ? {exeBlolowerk(lower + 144)} : {};
+			(lower + 145) < upper ? {exeBlolowerk(lower + 145)} : {};
+			(lower + 146) < upper ? {exeBlolowerk(lower + 146)} : {};
+			(lower + 147) < upper ? {exeBlolowerk(lower + 147)} : {};
+			(lower + 148) < upper ? {exeBlolowerk(lower + 148)} : {};
+			(lower + 149) < upper ? {exeBlolowerk(lower + 149)} : {};
+			(lower + 150) < upper ? {exeBlolowerk(lower + 150)} : {};
+			(lower + 151) < upper ? {exeBlolowerk(lower + 151)} : {};
+			(lower + 152) < upper ? {exeBlolowerk(lower + 152)} : {};
+			(lower + 153) < upper ? {exeBlolowerk(lower + 153)} : {};
+			(lower + 154) < upper ? {exeBlolowerk(lower + 154)} : {};
+			(lower + 155) < upper ? {exeBlolowerk(lower + 155)} : {};
+			(lower + 156) < upper ? {exeBlolowerk(lower + 156)} : {};
+			(lower + 157) < upper ? {exeBlolowerk(lower + 157)} : {};
+			(lower + 158) < upper ? {exeBlolowerk(lower + 158)} : {};
+			(lower + 159) < upper ? {exeBlolowerk(lower + 159)} : {};
+			(lower + 160) < upper ? {exeBlolowerk(lower + 160)} : {};
+			(lower + 161) < upper ? {exeBlolowerk(lower + 161)} : {};
+			(lower + 162) < upper ? {exeBlolowerk(lower + 162)} : {};
+			(lower + 163) < upper ? {exeBlolowerk(lower + 163)} : {};
+			(lower + 164) < upper ? {exeBlolowerk(lower + 164)} : {};
+			(lower + 165) < upper ? {exeBlolowerk(lower + 165)} : {};
+			(lower + 166) < upper ? {exeBlolowerk(lower + 166)} : {};
+			(lower + 167) < upper ? {exeBlolowerk(lower + 167)} : {};
+			(lower + 168) < upper ? {exeBlolowerk(lower + 168)} : {};
+			(lower + 169) < upper ? {exeBlolowerk(lower + 169)} : {};
+			(lower + 170) < upper ? {exeBlolowerk(lower + 170)} : {};
+			(lower + 171) < upper ? {exeBlolowerk(lower + 171)} : {};
+			(lower + 172) < upper ? {exeBlolowerk(lower + 172)} : {};
+			(lower + 173) < upper ? {exeBlolowerk(lower + 173)} : {};
+			(lower + 174) < upper ? {exeBlolowerk(lower + 174)} : {};
+			(lower + 175) < upper ? {exeBlolowerk(lower + 175)} : {};
+			(lower + 176) < upper ? {exeBlolowerk(lower + 176)} : {};
+			(lower + 177) < upper ? {exeBlolowerk(lower + 177)} : {};
+			(lower + 178) < upper ? {exeBlolowerk(lower + 178)} : {};
+			(lower + 179) < upper ? {exeBlolowerk(lower + 179)} : {};
+			(lower + 180) < upper ? {exeBlolowerk(lower + 180)} : {};
+			(lower + 181) < upper ? {exeBlolowerk(lower + 181)} : {};
+			(lower + 182) < upper ? {exeBlolowerk(lower + 182)} : {};
+			(lower + 183) < upper ? {exeBlolowerk(lower + 183)} : {};
+			(lower + 184) < upper ? {exeBlolowerk(lower + 184)} : {};
+			(lower + 185) < upper ? {exeBlolowerk(lower + 185)} : {};
+			(lower + 186) < upper ? {exeBlolowerk(lower + 186)} : {};
+			(lower + 187) < upper ? {exeBlolowerk(lower + 187)} : {};
+			(lower + 188) < upper ? {exeBlolowerk(lower + 188)} : {};
+			(lower + 189) < upper ? {exeBlolowerk(lower + 189)} : {};
+			(lower + 190) < upper ? {exeBlolowerk(lower + 190)} : {};
+			(lower + 191) < upper ? {exeBlolowerk(lower + 191)} : {};
+			(lower + 192) < upper ? {exeBlolowerk(lower + 192)} : {};
+			(lower + 193) < upper ? {exeBlolowerk(lower + 193)} : {};
+			(lower + 194) < upper ? {exeBlolowerk(lower + 194)} : {};
+			(lower + 195) < upper ? {exeBlolowerk(lower + 195)} : {};
+			(lower + 196) < upper ? {exeBlolowerk(lower + 196)} : {};
+			(lower + 197) < upper ? {exeBlolowerk(lower + 197)} : {};
+			(lower + 198) < upper ? {exeBlolowerk(lower + 198)} : {};
+			(lower + 199) < upper ? {exeBlolowerk(lower + 199)} : {};
+			(lower + 200) < upper ? {exeBlolowerk(lower + 200)} : {};
+			(lower + 201) < upper ? {exeBlolowerk(lower + 201)} : {};
+			(lower + 202) < upper ? {exeBlolowerk(lower + 202)} : {};
+			(lower + 203) < upper ? {exeBlolowerk(lower + 203)} : {};
+			(lower + 204) < upper ? {exeBlolowerk(lower + 204)} : {};
+			(lower + 205) < upper ? {exeBlolowerk(lower + 205)} : {};
+			(lower + 206) < upper ? {exeBlolowerk(lower + 206)} : {};
+			(lower + 207) < upper ? {exeBlolowerk(lower + 207)} : {};
+			(lower + 208) < upper ? {exeBlolowerk(lower + 208)} : {};
+			(lower + 209) < upper ? {exeBlolowerk(lower + 209)} : {};
+			(lower + 210) < upper ? {exeBlolowerk(lower + 210)} : {};
+			(lower + 211) < upper ? {exeBlolowerk(lower + 211)} : {};
+			(lower + 212) < upper ? {exeBlolowerk(lower + 212)} : {};
+			(lower + 213) < upper ? {exeBlolowerk(lower + 213)} : {};
+			(lower + 214) < upper ? {exeBlolowerk(lower + 214)} : {};
+			(lower + 215) < upper ? {exeBlolowerk(lower + 215)} : {};
+			(lower + 216) < upper ? {exeBlolowerk(lower + 216)} : {};
+			(lower + 217) < upper ? {exeBlolowerk(lower + 217)} : {};
+			(lower + 218) < upper ? {exeBlolowerk(lower + 218)} : {};
+			(lower + 219) < upper ? {exeBlolowerk(lower + 219)} : {};
+			(lower + 220) < upper ? {exeBlolowerk(lower + 220)} : {};
+			(lower + 221) < upper ? {exeBlolowerk(lower + 221)} : {};
+			(lower + 222) < upper ? {exeBlolowerk(lower + 222)} : {};
+			(lower + 223) < upper ? {exeBlolowerk(lower + 223)} : {};
+			(lower + 224) < upper ? {exeBlolowerk(lower + 224)} : {};
+			(lower + 225) < upper ? {exeBlolowerk(lower + 225)} : {};
+			(lower + 226) < upper ? {exeBlolowerk(lower + 226)} : {};
+			(lower + 227) < upper ? {exeBlolowerk(lower + 227)} : {};
+			(lower + 228) < upper ? {exeBlolowerk(lower + 228)} : {};
+			(lower + 229) < upper ? {exeBlolowerk(lower + 229)} : {};
+			(lower + 230) < upper ? {exeBlolowerk(lower + 230)} : {};
+			(lower + 231) < upper ? {exeBlolowerk(lower + 231)} : {};
+			(lower + 232) < upper ? {exeBlolowerk(lower + 232)} : {};
+			(lower + 233) < upper ? {exeBlolowerk(lower + 233)} : {};
+			(lower + 234) < upper ? {exeBlolowerk(lower + 234)} : {};
+			(lower + 235) < upper ? {extendFor(exeBlolowerk,upper,(lower+235))}:{};
+		};
+	};
+	_;
+};
+ExCore=ExCore;
